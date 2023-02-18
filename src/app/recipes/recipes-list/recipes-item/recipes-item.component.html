@@ -1,1 +1,30 @@
-<p>recipes-item works!</p>
+<!-- <<div class="row">
+    <div class="col-xs-12">
+        <button class="btn btn-success">New Recipe</button>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col-xs-12">
+            <a href="#" class="list-group-item clearfix">
+               <div class="pull-left">
+                    <h4 class="list-group-item-heading">{{recipeData.name}}</h4>
+                    <p class="list-group-item-text">{{recipeData.description}}</p>
+               </div>
+               <div class="pull-right">
+                    <img [src]="recipeData.image" alt="{{recipeData.name}}" class="img-responsive" style="width:50px">
+               </div>
+            </a>
+        </div>
+    </div>
+</div>-->
+
+<!-- <ng-content></ng-content> -->
+<a href="#" (click)="passData()" class="list-group-item clearfix">
+    <div class="pull-left">
+         <h4 class="list-group-item-heading">{{recipeData.name}}</h4>
+         <p class="list-group-item-text">{{recipeData.description}}</p>
+    </div>
+    <div class="pull-right">
+         <img [src]="recipeData.image" alt="{{recipeData.name}}" class="img-responsive" style="width:50px">
+    </div>
+ </a>

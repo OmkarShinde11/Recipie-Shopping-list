@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Recipe } from '../recipe.model'
 @Component({
   selector: 'app-recipes-list',
@@ -11,10 +11,14 @@ export class RecipesListComponent implements OnInit {
     new Recipe('A First Recipe','A Sweet Recipe','https://cdn.healthyrecipes101.com/recipes/images/chickens/healthy-baked-chicken-breast-recipe-healthykitchen101-3-claxp3w5i00vs551b94x3bj7p.webp?w=1080&q=75')
 
   ];
+  @Output()passParentData=new EventEmitter<Recipe>()
   constructor() { }
   
   ngOnInit(): void {
     console.log(this.recipe);
+  }
+  acceptData(data:Recipe){
+    this.passParentData.emit(data);
   }
 
 }
