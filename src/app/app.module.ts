@@ -11,7 +11,8 @@ import { RecipesItemComponent } from './recipes/recipes-list/recipes-item/recipe
 import { ShoppingListComponent } from './shopping-list/shopping-list.component';
 import { ShoppingListEditComponent } from './shopping-list/shopping-list-edit/shopping-list-edit.component';
 import { DropDpwnToggleDirective } from './Shared/drop-dpwn-toggle.directive';
-
+import { RecipesService } from './Service/recipes.service';
+import { ShoppingListService } from './Service/shopping-list.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,7 +32,7 @@ import { DropDpwnToggleDirective } from './Shared/drop-dpwn-toggle.directive';
     AppRoutingModule,
     FormsModule,
   ],
-  providers: [],
+  providers: [RecipesService,ShoppingListService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
