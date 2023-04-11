@@ -13,22 +13,25 @@
         <div class="btn-group" appDropDpwnToggle>
             <button type="button" class="btn btn-primary dropdown-toggle">Manage Recipe <span class="caret"></span></button>
             <ul class="dropdown-menu">
-                <li><a href="#">To shopping list</a></li>
-                <li><a href="#">Edit Recipe</a></li>
-                <li><a href="#">Delete Recipe</a></li>
+                <li><a style="cursor:pointer"(click)="onAddShoppingList()">To shopping list</a></li>
+                <li><a style="cursor:pointer" (click)="onEditRecipe()">Edit Recipe</a></li>
+                <li><a style="cursor:pointer">Delete Recipe</a></li>
             </ul>
         </div>
     </div>
 </div>
 <div class="row">
     <div class="col-xs-12">
-        <p>{{recipeDetails.name}}</p>
-        <p>{{recipeDetails.description}}</p>
-        <img [src]="recipeDetails.image" [alt]="recipeDetails.image" style="width:20%;height:auto">
+        <p>{{recipe.name}}</p>
+        <p>{{recipe.description}}</p>
+        <img [src]="recipe.image" [alt]="recipe.image" style="width:20%;height:auto">
     </div>
 </div>
 <div class="row">
     <div class="col-xs-12">
         Ingredients
+        <ul class="list-group">
+            <li class="list-group-item" *ngFor="let ingredient of recipe.ingredient">{{ingredient.name}} ({{ingredient.amount}})</li>
+        </ul>
     </div>
 </div>
