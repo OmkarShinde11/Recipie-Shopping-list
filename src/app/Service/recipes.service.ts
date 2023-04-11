@@ -20,12 +20,18 @@ export class RecipesService {
   
   ];
   constructor(private shoppingListService:ShoppingListService) { }
-  selectedRecipe=new EventEmitter<Recipe>()
+  selectedRecipe=new EventEmitter<Recipe>();
+  recipelength=this.recipe.length-1;
   getRecipe(){
     return this.recipe;
+  }
+  getRecipeID(index:number){
+    debugger
+    return this.recipe[index]
   }
   sendIngredients(ingredient:Ingredient[]){
     this.shoppingListService.addIngredients(ingredient)
   }
+
 
 }

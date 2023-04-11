@@ -3,9 +3,10 @@
         <app-recipes-list></app-recipes-list>
     </div>
     <div class="col-md-7">
-        <app-recipes-detail [recipeDetails]="childData" *ngIf="childData; else infoText"></app-recipes-detail>
+        <!-- <app-recipes-detail [recipeDetails]="childData" *ngIf="childData; else infoText"></app-recipes-detail>
         <ng-template #infoText>
            <p>Please Select a Recipe</p>
-        </ng-template>
+        </ng-template> -->
+        <router-outlet></router-outlet>
     </div>
 </div>

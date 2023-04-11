@@ -13,6 +13,8 @@ import { ShoppingListEditComponent } from './shopping-list/shopping-list-edit/sh
 import { DropDpwnToggleDirective } from './Shared/drop-dpwn-toggle.directive';
 import { RecipesService } from './Service/recipes.service';
 import { ShoppingListService } from './Service/shopping-list.service';
+import { RecipeStartComponent } from './recipes/recipe-start/recipe-start.component';
+import { RecipeEditComponent } from './recipes/recipe-edit/recipe-edit.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,6 +26,8 @@ import { ShoppingListService } from './Service/shopping-list.service';
     ShoppingListComponent,
     ShoppingListEditComponent,
     DropDpwnToggleDirective,
+    RecipeStartComponent,
+    RecipeEditComponent,
     
     
   ],

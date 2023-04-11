@@ -12,12 +12,12 @@ export class RecipesComponent implements OnInit {
   constructor(private recipeService:RecipesService) { }
 
   ngOnInit(): void {
-    this.recipeService.selectedRecipe.subscribe((recipe:Recipe)=>{
-      this.childData=recipe
-    })
+    // this.recipeService.selectedRecipe.subscribe((recipe:Recipe)=>{
+    //   this.childData=recipe
+    // })
   }
-  acceptChildData(data){
-    this.childData=data
-    console.log(this.childData);
-  }
+  // acceptChildData(data){
+  //   this.childData=data
+  //   console.log(this.childData);
+  // }
 }
