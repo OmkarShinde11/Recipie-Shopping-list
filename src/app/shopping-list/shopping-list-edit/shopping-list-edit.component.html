@@ -1,22 +1,23 @@
 <div class="row">
     <div class="col-xs-12">
-        <form>
+        <form #shoppingForm="ngForm" (ngSubmit)="add(shoppingForm)">
             <div class="row">
                 <div class="col-sm-5 form-group">
                     <label for="name">Name</label>
-                    <input type="text" id="name" class="form-control" [(ngModel)]="ingredientName" name="ingredientName" />
-                    
+                    <input type="text" id="name" class="form-control" [(ngModel)]="ingredientName" name="ingredientName" required ngModel #name="ngModel" />
+                    <span class="help-block" *ngIf="!name.valid && name.touched">Item Name Is required.**</span>
                 </div>
                 <div class="col-sm-2 form-group">
                     <label for="amount">Amount</label>
-                    <input type="number" id="amount" class="form-control" [(ngModel)]="ingredientAmount" name="ingredientAmount" />
+                    <input type="number" id="amount" class="form-control" [(ngModel)]="ingredientAmount" name="ingredientAmount" required ngModel #amount="ngModel"[pattern]="'^[1-9]+[0-9]*$'"/>
+                    <span class="help-block" *ngIf="!amount.valid && amount.touched">Item amount Is required.**</span>
                 </div>
             </div>
             <div class="row">
                 <div class="col-xs-12">
-                    <button  class="btn btn-success" (click)="add()">Add</button>
-                    <button type="submit" class="btn btn-danger" (click)="delete()">Delete</button>
-                    <button type="submit" class="btn btn-primary">Clear</button>
+                    <button  class="btn btn-success" type="submit" [disabled]="!shoppingForm.valid">{{ editmode ? 'Update':'Add'}}</button>
+                    <button *ngIf="editmode"  class="btn btn-danger" (click)="delete(shoppingForm)" [disabled]="!shoppingForm.valid">Delete</button>
+                    <button type="submit" class="btn btn-primary" [disabled]="!shoppingForm.valid" (click)="clear(shoppingForm)">Clear</button>
                 </div>
             </div>
         </form>
