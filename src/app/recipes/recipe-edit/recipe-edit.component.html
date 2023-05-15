@@ -1,1 +1,74 @@
-<p>recipe-edit works!</p>
+<div class="row">
+    <div class="col-xs-12">
+        <form [formGroup]="recipeForm" (ngSubmit)="onSubmit()">
+            <div class="row">
+                <div class="col-xs-12">
+                    <button class="btn btn-success" type="submit" [disabled]="!recipeForm.valid">{{editmode?'Update':'Save'}}</button>
+                    <button class="btn btn-danger" type="button" [disabled]="!recipeForm.valid" (click)="onCancle()">Cancle</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" class="form-control" name="name" id="name" formControlName="recipeName">
+                    </div>
+                    <div *ngIf="!recipeForm.get('recipeName').valid && recipeForm.get('recipeName').touched">
+                        <span class="help-block" *ngIf="recipeForm.get('recipeName').errors.required">Recipe Name is required **</span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="form-group">
+                        <label for="imageUrl">ImageUrl</label>
+                        <input type="text" class="form-control" name="imageUrl" id="imageUrl" formControlName="recipeImage" #imageurl>
+                    </div>
+                    <div *ngIf="!recipeForm.get('recipeImage').valid && recipeForm.get('recipeImage').touched">
+                        <span class="help-block" *ngIf="recipeForm.get('recipeImage').errors.required">Recipe Image url is required **</span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="form group">
+                        <img [src]="imageurl.value" style="width:300px;height:168px;">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="form-group">
+                        <label for="description">Description</label>
+                        <textarea  class="form-control" name="description" id="description" formControlName="recipeDescription"></textarea>
+                    </div>
+                    <div *ngIf="!recipeForm.get('recipeDescription').valid && recipeForm.get('recipeDescription').touched">
+                        <span class="help-block" *ngIf="recipeForm.get('recipeDescription').errors.required">Recipe Description is required **</span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12" formArrayName="recipeIngredients">
+                    <div class="row" *ngFor="let ingredient of getIngredientControls();let i=index" [formGroupName]="i">
+                        <div class="col-xs-7">
+                            <div class="form-group">
+                                <label for="ingredientName">Name</label>
+                                <input type="text"  class="form-control" name="ingredientName" id="ingredientName" formControlName="name">
+                            </div>
+                        </div>
+                        <div class="col-xs-3">
+                            <div class="form-group">
+                                <label for="ingredientAmount">Amount</label>
+                                <input type="number"  class="form-control" name="ingredientAmount" id="ingredientAmount" formControlName="amount">
+                            </div>
+                        </div>
+                        <div class="col-xs-2">
+                            <button class="btn btn-danger" (click)="clearControls(i)">x</button>
+                        </div>
+                    </div>
+                </div>
+                <button class="btn btn-primary" (click)="addIngredient()" type="button">{{this.editmode?'Add More Ingredient':'Add Ingredient'}}</button>
+            </div>
+        </form>
+    </div>
+</div>
