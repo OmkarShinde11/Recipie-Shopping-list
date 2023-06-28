@@ -16,6 +16,11 @@ import { ShoppingListService } from './Service/shopping-list.service';
 import { RecipeStartComponent } from './recipes/recipe-start/recipe-start.component';
 import { RecipeEditComponent } from './recipes/recipe-edit/recipe-edit.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
+import { DataStorageService } from './Service/data-storage.service';
+import { AuthComponent } from './auth/auth.component';
+import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
+import { SendDataService } from './InterCeptoe/send-data.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,6 +34,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     DropDpwnToggleDirective,
     RecipeStartComponent,
     RecipeEditComponent,
+    AuthComponent,
+    LoadingSpinnerComponent,
     
     
   ],
@@ -36,9 +43,16 @@ import { ReactiveFormsModule } from '@angular/forms';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule,
   ],
-  providers: [RecipesService,ShoppingListService],
+  providers: [RecipesService,ShoppingListService,DataStorageService,
+    {
+      provide:HTTP_INTERCEPTORS,
+      useClass:SendDataService,
+      multi:true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
