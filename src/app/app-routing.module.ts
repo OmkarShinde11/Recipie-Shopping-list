@@ -21,6 +21,7 @@ const routes: Routes = [
     path:'recipes',
     component:RecipesComponent,
     canActivate:[RecipeActivateGuard],
+    resolve:[ReciprResolverService],
     children:[
       {
         path:'',
