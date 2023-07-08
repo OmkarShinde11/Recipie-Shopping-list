@@ -21,6 +21,8 @@ import { DataStorageService } from './Service/data-storage.service';
 import { AuthComponent } from './auth/auth.component';
 import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
 import { SendDataService } from './InterCeptoe/send-data.service';
+import { AlertComponent } from './alert/alert.component';
+import { PlaceholderDirective } from './Shared/placeholder.directive';
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,6 +38,8 @@ import { SendDataService } from './InterCeptoe/send-data.service';
     RecipeEditComponent,
     AuthComponent,
     LoadingSpinnerComponent,
+    AlertComponent,
+    PlaceholderDirective,
     
     
   ],

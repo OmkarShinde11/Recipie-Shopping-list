@@ -13,6 +13,10 @@ interface AuthResponce{
   localId:string,
   registered?:boolean,
 }
+
+interface ResetPassword{
+  email:string,
+}
 @Injectable({
   providedIn: 'root'
 })
@@ -94,5 +98,17 @@ export class AuthService {
     this.tokenExpiration=setTimeout(()=>{
       this.logOut();
     },expirationTime)
+  }
+
+  passwordRecovery(email){
+    return this.http.post<ResetPassword>('https://identitytoolkit.googleapis.com/v1/accounts:sendOobCode?key=AIzaSyCLWsmkdBjYu_85OQHGkBPfFedLHj3La1c',{
+      requestType:'PASSWORD_RESET',
+      email:email
+    }).pipe(catchError(this.passwordError))
+  }
+
+  private passwordError(errorResp:HttpErrorResponse){
+    let password_Error=errorResp.error.error.message;
+    return throwError(password_Error);
   }
 }
