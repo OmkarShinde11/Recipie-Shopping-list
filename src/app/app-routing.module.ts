@@ -34,12 +34,12 @@ const routes: Routes = [
       {
         path:':id',
         component:RecipesDetailComponent,
-        resolve:[ReciprResolverService]
+        // resolve:[ReciprResolverService]
       },
       {
         path:':id/edit',
         component:RecipeEditComponent,
-        resolve:[ReciprResolverService]
+        // resolve:[ReciprResolverService]
       },
     ]
   },
