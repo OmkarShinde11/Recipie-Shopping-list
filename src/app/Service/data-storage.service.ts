@@ -19,7 +19,6 @@ export class DataStorageService {
   }
 
   fetchRecipe(){
-    debugger;
     return this.authService.userdata.pipe(take(1),exhaustMap(user=>{
       return this.http.get<Recipe[]>('https://recipe-shoppinglist-672ce-default-rtdb.firebaseio.com/Recipes.json',
       {
