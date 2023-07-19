@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject, Subject, throwError } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
 import { User } from './Model/userModel';
 
 interface AuthResponce{
@@ -27,7 +28,7 @@ export class AuthService {
   constructor(private http:HttpClient,private router:Router) { }
 
   SignUp(email:string,password:string){
-    return this.http.post<AuthResponce>('https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyCLWsmkdBjYu_85OQHGkBPfFedLHj3La1c',
+    return this.http.post<AuthResponce>('https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=' + environment.apiKey,
     {
       email:email,
       password:password,
@@ -41,7 +42,7 @@ export class AuthService {
 
   Login(email:string,password:string){
     debugger
-    return this.http.post<AuthResponce>('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyCLWsmkdBjYu_85OQHGkBPfFedLHj3La1c',{
+    return this.http.post<AuthResponce>('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=' + environment.apiKey,{
       email:email,
       password:password,
       returnSecureToken:true,
@@ -101,7 +102,7 @@ export class AuthService {
   }
 
   passwordRecovery(email){
-    return this.http.post<ResetPassword>('https://identitytoolkit.googleapis.com/v1/accounts:sendOobCode?key=AIzaSyCLWsmkdBjYu_85OQHGkBPfFedLHj3La1c',{
+    return this.http.post<ResetPassword>('https://identitytoolkit.googleapis.com/v1/accounts:sendOobCode?key=' + environment.apiKey,{
       requestType:'PASSWORD_RESET',
       email:email
     }).pipe(catchError(this.passwordError))
