@@ -15,6 +15,10 @@ import { SendDataService } from './InterCeptoe/send-data.service';
 import { DataStorageService } from './Service/data-storage.service';
 import { RecipesService } from './Service/recipes.service';
 import { ShoppingListService } from './Service/shopping-list.service';
+import { StoreModule } from '@ngrx/store';
+import * as fromApp from './app.reducer';
+import { EffectsModule } from '@ngrx/effects';
+import { AuthEffect } from './auth/store/auth.effect';
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,6 +35,8 @@ import { ShoppingListService } from './Service/shopping-list.service';
     ReactiveFormsModule,
     HttpClientModule,
     SharedModule,
+    StoreModule.forRoot(fromApp.appreducer),
+    EffectsModule.forRoot([AuthEffect]),
   ],
   providers: [
     RecipesService,ShoppingListService,DataStorageService,

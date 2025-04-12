@@ -3,6 +3,9 @@ import { AuthService } from '../Service/auth.service';
 import { AlertComponent } from '../alert/alert.component';
 import { PlaceholderDirective } from '../Shared/placeholder.directive';
 import { catchError } from 'rxjs/operators';
+import { Store } from '@ngrx/store';
+import * as fromApp from '../app.reducer';
+import * as AuthAction from '../auth/store/auth.action'
 @Component({
   selector: 'app-auth',
   templateUrl: './auth.component.html',
@@ -15,7 +18,7 @@ export class AuthComponent implements OnInit {
   password;
   error:string;
   @ViewChild(PlaceholderDirective)alertHost:PlaceholderDirective;
-  constructor(private authService:AuthService,private componentFactory:ComponentFactoryResolver) { }
+  constructor(private authService:AuthService,private componentFactory:ComponentFactoryResolver,private store:Store<fromApp.AppState>) { }
 
   ngOnInit(): void {
   }
@@ -39,15 +42,16 @@ export class AuthComponent implements OnInit {
       })
      }
     else{
-      this.authService.Login(this.email,this.password).subscribe(respData=>{
-        console.log(respData);
-        this.isLoading=false
-      },errorMsg=>{
-        console.log(errorMsg);
-        this.error=errorMsg
-        this.showErrorCmp(errorMsg)
-        this.isLoading=false
-      })
+      // this.authService.Login(this.email,this.password).subscribe(respData=>{
+      //   console.log(respData);
+      //   this.isLoading=false
+      // },errorMsg=>{
+      //   console.log(errorMsg);
+      //   this.error=errorMsg
+      //   this.showErrorCmp(errorMsg)
+      //   this.isLoading=false
+      // })
+      this.store.dispatch(AuthAction.loginStart({email:this.email,password:this.password}));
     }
     form.reset();
   }
