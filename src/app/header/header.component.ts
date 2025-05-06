@@ -5,6 +5,7 @@ import { DataStorageService } from '../Service/data-storage.service';
 import { Store } from '@ngrx/store';
 import * as fromApp from '../app.reducer';
 import { map } from 'rxjs/operators';
+import * as recipeAction from '../recipes/store/recipe.action'
 
 @Component({
   selector: 'app-header',
@@ -41,7 +42,8 @@ export class HeaderComponent implements OnInit {
   }
   onSaveData(){
     debugger
-     this.dataStorage.storeRecipe();
+    //  this.dataStorage.storeRecipe();
+    this.store.dispatch(recipeAction.storeRecipe());
   }
   onFetchData(){
     this.dataStorage.fetchRecipe().subscribe();

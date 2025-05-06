@@ -18,7 +18,7 @@
                         <img [src]="rec.image" alt="{{rec.name}}" class="img-responsive" style="width:50px">
                    </div>
                 </a> -->
-                <app-recipes-item [recipeData]="rec"  *ngFor="let rec of recipe; let i=index " [recipeId]="i"></app-recipes-item>
+                <app-recipes-item *ngFor="let rec of recipe; let i=index " [recipeData]="rec"  [recipeId]="i"></app-recipes-item>
             </div>
         </div>
     

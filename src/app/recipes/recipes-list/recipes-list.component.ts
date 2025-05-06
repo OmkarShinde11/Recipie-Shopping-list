@@ -3,6 +3,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { RecipesService } from 'src/app/Service/recipes.service';
 import { Recipe } from '../recipe.model'
+import { Store } from '@ngrx/store';
+import * as fromApp from '../../app.reducer';
+import { map } from 'rxjs/operators';
 @Component({
   selector: 'app-recipes-list',
   templateUrl: './recipes-list.component.html',
@@ -16,14 +19,21 @@ export class RecipesListComponent implements OnInit,OnDestroy {
   ];
   subscription:Subscription;
   // @Output()passParentData=new EventEmitter<Recipe>()
-  constructor(private recipeService:RecipesService,private router:Router,private route:ActivatedRoute) { }
+  constructor(private recipeService:RecipesService,private router:Router,private route:ActivatedRoute,private stroe:Store<fromApp.AppState>) { }
   
   ngOnInit(): void {
-   this.subscription=this.recipeService.recipeChange.subscribe((resp)=>{
-      this.recipe=resp;
-   })
-    this.recipe=this.recipeService.getRecipe();
-    console.log(this.recipe)
+  //  this.subscription=this.recipeService.recipeChange.subscribe((resp)=>{
+  //     this.recipe=resp;
+  //  })
+  //   this.recipe=this.recipeService.getRecipe();
+  //   console.log(this.recipe)
+  this.stroe.select('recipe').pipe(
+    map((recipeState)=>{
+      return recipeState.recipe
+    })
+  ).subscribe((recipes:Recipe[])=>{
+    this.recipe=recipes;
+  })
   }
   ngOnDestroy(){
     this.subscription.unsubscribe();

@@ -19,6 +19,7 @@ import { StoreModule } from '@ngrx/store';
 import * as fromApp from './app.reducer';
 import { EffectsModule } from '@ngrx/effects';
 import { AuthEffect } from './auth/store/auth.effect';
+import { recipeEffect } from './recipes/store/recipe.effect';
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,7 +37,7 @@ import { AuthEffect } from './auth/store/auth.effect';
     HttpClientModule,
     SharedModule,
     StoreModule.forRoot(fromApp.appreducer),
-    EffectsModule.forRoot([AuthEffect]),
+    EffectsModule.forRoot([AuthEffect,recipeEffect]),
   ],
   providers: [
     RecipesService,ShoppingListService,DataStorageService,

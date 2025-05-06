@@ -6,6 +6,7 @@ import {exhaustMap, map, take, tap} from 'rxjs/operators';
 import { AuthService } from './auth.service';
 import { Store } from '@ngrx/store';
 import * as fromApp from '../app.reducer'
+import  * as fromRecipe from '../recipes/store/recipe.action';
 @Injectable({
   providedIn: 'root'
 })
@@ -52,6 +53,14 @@ export class DataStorageService {
       this.recipeService.setRecipe(res);
     })
   )
+
+  // return this.store.select('auth').pipe(
+  //   take(1),
+  //   map((auth)=>auth.user),
+  //   tap(()=>{
+  //     return this.store.dispatch(fromRecipe.fetchRecipe());
+  //   })
+  // )
     
   }
 }
