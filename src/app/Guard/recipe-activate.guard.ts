@@ -18,7 +18,6 @@ export class RecipeActivateGuard implements CanActivate {
          }
          return this.router.createUrlTree(['/auth'])
       }))
-   
   }
   
 }
